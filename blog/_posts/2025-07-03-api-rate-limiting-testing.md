@@ -5,13 +5,12 @@ date: 2025-07-03
 image: /images/ratelimit.png
 ---
 
-![Rate Limiting Hero Image](/images/ratelimit.png)
-
 So there I was, staring at a JIRA ticket that said "implement rate limiting" and honestly? I had no clue where to start...
-
 _Spoiler alert: it turned into one of the most interesting testing challenges I’ve tackled._
 
 ---
+
+![Rate Limiting Hero Image](/images/ratelimit.png)
 
 ## The "Wait, What Even Is Rate Limiting?" Moment
 
