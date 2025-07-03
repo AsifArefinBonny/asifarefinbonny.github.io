@@ -1,0 +1,14 @@
+---
+layout: default
+---
+
+<article class="blog-post">
+  <h1>{{ page.title }}</h1>
+  <p class="blog-date">{{ page.date | date: "%B %d, %Y" }}</p>
+  {% if page.image %}
+    <img src="{{ page.image }}" alt="{{ page.title }}" />
+  {% endif %}
+  <div class="blog-content">
+    {{ content }}
+  </div>
+</article>
