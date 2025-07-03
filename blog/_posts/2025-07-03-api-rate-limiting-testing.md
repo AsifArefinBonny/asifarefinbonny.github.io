@@ -5,7 +5,7 @@ date: 2025-07-03
 image: /images/ratelimit.png
 ---
 
-![Rate Limiting Hero Image](/images/blog/rate-limiting-cover.png)
+![Rate Limiting Hero Image](/images/ratelimit.png)
 
 So there I was, staring at a JIRA ticket that said "implement rate limiting" and honestly? I had no clue where to start...
 
@@ -24,8 +24,6 @@ Our system was getting **1000+ requests per minute**, overloading the servers. T
 - `RATE_LIMITER_WINDOW_SEGMENTS`: How granular the window shifts
 
 After drawing diagrams and wrestling with metaphors, I understood: it's like a train window — old requests slide out, new ones come in.
-
-![QuickDial Screenshot 1](/images/ratelimit.png)
 
 ---
 

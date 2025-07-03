@@ -1,7 +1,7 @@
-title: Asif Arefin Bonny Resume & Blog
-email: your-email@example.com
+title: Bonny's Blog
+email: asifarefinbonny18@gmail.com
 description: >- # this means to ignore newlines until "."
-  Personal resume and blog site for Asif Arefin Bonny.
+  Personal resume and blog site
 author: Asif Arefin Bonny
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site

@@ -18,7 +18,7 @@ But… the handwriting is often bad, digits unclear, and calling becomes frustra
 
 ---
 
-![QuickDial Screenshot 1](/images/quickdial1.png)
+![QuickDial Screenshot 1](/images/quickdial2.png)
 
 ### 💡 The Inspiration
 
@@ -35,7 +35,7 @@ With **Quick Dial**, you can:
 
 ---
 
-![QuickDial Screenshot 2](/images/quickdial2.png)
+![QuickDial Screenshot 2](/images/quickdial1.png)
 
 ---
 

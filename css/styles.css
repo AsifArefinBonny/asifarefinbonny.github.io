@@ -507,9 +507,9 @@ label {
 
 .floating-blog-btn {
 	position: fixed;
-	top: 20px;
-	right: 20px;
-	background: #ffffff;
+	top: 10px;
+	right: 10px;
+	background:#6666669e;
 	color: white;
 	padding: 10px 15px;
 	border-radius: 30px;
@@ -574,3 +574,15 @@ label {
 	}
   }
   
+  .logo {
+	width: 100%;
+	max-width: 300px; /* or whatever max size you want */
+	height: auto;
+	display: block;
+	margin: 0 auto;
+  }
+  @media (max-width: 600px) {
+	.logo {
+	  max-width: 150px; /* smaller on mobile */
+	}
+  }
