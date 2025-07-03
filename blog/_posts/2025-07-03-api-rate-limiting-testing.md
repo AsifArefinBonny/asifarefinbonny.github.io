@@ -2,7 +2,7 @@
 layout: post
 title: "My Journey Testing API Rate Limiting: From Confused to Confident"
 date: 2025-07-03
-image: /images/blog/rate-limiting-cover.png
+image: /images/ratelimit.png
 ---
 
 ![Rate Limiting Hero Image](/images/blog/rate-limiting-cover.png)
@@ -25,7 +25,7 @@ Our system was getting **1000+ requests per minute**, overloading the servers. T
 
 After drawing diagrams and wrestling with metaphors, I understood: it's like a train window — old requests slide out, new ones come in.
 
-![Sliding Window Diagram](https://via.placeholder.com/600x300/E67E22/FFFFFF?text=Sliding+Window+Concept)
+![QuickDial Screenshot 1](/images/ratelimit.png)
 
 ---
 

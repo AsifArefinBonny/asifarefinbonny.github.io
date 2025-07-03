@@ -2,7 +2,7 @@
 layout: post
 title: "Quick Dial: A Smarter Way to Share Your Contact with a QR Code"
 date: 2025-07-03
-image: /images/blog/quickdial1.png
+image: /images/quickdial1.png
 ---
 
 I created **𝗤𝘂𝗶𝗰𝗸 𝗗𝗶𝗮𝗹** ([🔗 Visit App](https://asifarefinbonny.github.io/QuickDial/)) — a QR Code Generator for quick contact dialing, which might just make us a bit smarter if we use it right!
@@ -18,7 +18,7 @@ But… the handwriting is often bad, digits unclear, and calling becomes frustra
 
 ---
 
-<img src="../../images/quickdial1.png" alt="QuickDial UI Screenshot" style="border-radius: 8px; margin: 1rem 0;" />
+![QuickDial Screenshot 1](/images/quickdial1.png)
 
 ### 💡 The Inspiration
 
@@ -31,19 +31,19 @@ A big shoutout to my colleague, **Tariqur Rahman**, who pointed out this everyda
 With **Quick Dial**, you can:
 - Instantly generate a QR code that, when scanned, dials your number directly.
 - Download the QR as a PDF or share it digitally.
-- Print and display it on your car’s windshield for hassle-free contact.
+- Print and display it on your car's windshield for hassle-free contact.
 
 ---
 
-<img src="../../images/quickdial2.png" alt="QuickDial UI PDF Example" style="border-radius: 8px; margin: 1rem 0;" />
+![QuickDial Screenshot 2](/images/quickdial2.png)
 
 ---
 
-### 🔍 From a QA Engineer’s Perspective
+### 🔍 From a QA Engineer's Perspective
 
 As a QA Engineer passionate about automation and real-world problem-solving, I wanted to treat this like a serious project:
 
-- 🧠 “Vibe coding” approach — for fun, flow, and creativity.
+- 🧠 "Vibe coding" approach — for fun, flow, and creativity.
 - 🤖 Leveraged AI to brainstorm, debug, and even write parts of the code and tests.
 - ✅ Implemented **Playwright** for robust end-to-end testing across browsers and devices.
 - 🔁 Setup **GitHub Actions** to trigger tests and auto-deploy builds on push.

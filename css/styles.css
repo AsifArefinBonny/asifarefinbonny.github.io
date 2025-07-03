@@ -507,21 +507,20 @@ label {
 
 .floating-blog-btn {
 	position: fixed;
-	bottom: 20px;
+	top: 20px;
 	right: 20px;
-	background: #416eef;
+	background: #ffffff;
 	color: white;
-	padding: 12px 20px;
+	padding: 10px 15px;
 	border-radius: 30px;
-	font-weight: 600;
-	text-transform: uppercase;
+	font-weight: 2200;
 	z-index: 999;
-	box-shadow: 0px 4px 12px rgba(0,0,0,0.2);
+	box-shadow: 0px 4px 12px rgba(255, 255, 255, 0.2);
 	text-decoration: none;
   }
 
   .floating-blog-btn:hover {
-	background: #2f54d2;
+	background: #dfdfdf;
   }
   
   .blog-list, .blog-post {
