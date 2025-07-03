@@ -586,3 +586,7 @@ label {
 	  max-width: 150px; /* smaller on mobile */
 	}
   }
+
+  .trigger, .site-nav {
+  display: none !important;
+}
