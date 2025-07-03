@@ -587,6 +587,7 @@ label {
 	}
   }
 
-  .trigger, .site-nav {
-  display: none !important;
-}
+  body .trigger,
+  body .site-nav {
+    display: none !important;
+  }
