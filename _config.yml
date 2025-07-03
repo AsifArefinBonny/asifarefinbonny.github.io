@@ -2,12 +2,22 @@ title: Asif Arefin Bonny Resume & Blog
 email: your-email@example.com
 description: >- # this means to ignore newlines until "."
   Personal resume and blog site for Asif Arefin Bonny.
+author: Asif Arefin Bonny
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site
 theme: minima
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
+
+# Minima theme options
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+      author: "Asif Arefin Bonny"
 
 # Build settings
 markdown: kramdown 
