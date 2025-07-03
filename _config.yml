@@ -3,8 +3,8 @@ email: asifarefinbonny18@gmail.com
 description: >- # this means to ignore newlines until "."
   Personal resume and blog site
 author: Asif Arefin Bonny
-baseurl: "" # the subpath of your site, e.g. /blog
-url: "" # the base hostname & protocol for your site
+# baseurl: "" # the subpath of your site, e.g. /blog
+# url: "" # the base hostname & protocol for your site
 theme: minima
 plugins:
   - jekyll-feed
