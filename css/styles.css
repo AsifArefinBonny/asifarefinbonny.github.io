@@ -591,3 +591,53 @@ label {
   body .site-nav {
     display: none !important;
   }
+
+/* Blog list horizontal card layout */
+.blog-list {
+  max-width: 800px;
+  margin: 0 auto;
+}
+.blog-post-item {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  padding: 1rem 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.blog-thumb {
+  width: 100%;
+  max-width: 90px;
+  height: auto;
+  border-radius: 8px;
+  object-fit: cover;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+.blog-post-item h2 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.2rem;
+}
+.blog-date {
+  font-size: 0.95rem;
+  color: #888;
+}
+.blog-desc {
+  color: #555;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+@media (max-width: 768px) {
+  .blog-post-item {
+    flex-direction: column;
+    text-align: center;
+    padding: 1rem;
+  }
+  .blog-thumb {
+    max-width: 120px;
+    margin-bottom: 0.5rem;
+  }
+  .blog-list {
+    padding: 0 0.5rem;
+  }
+}

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Quick Dial: A Smarter Way to Share Your Contact with a QR Code"
-date: 2025-07-03
+date: 2025-06-26
 image: /images/quickdial1.png
 ---
 

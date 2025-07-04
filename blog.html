@@ -6,11 +6,20 @@ title: Blog
 <a href="/index.html" class="btn btn-secondary" style="margin-bottom: 1em;">&larr; Back to Home</a>
 
 <h1>Blog</h1>
-<ul>
+<div class="blog-list">
   {% for post in site.posts %}
-    <li>
-      <a href="{{ post.url }}">{{ post.title }}</a>
-      <span> - {{ post.date | date: "%B %d, %Y" }}</span>
-    </li>
+    <div class="blog-post-item row align-items-center mb-4">
+      {% if post.image %}
+        <div class="col-3 col-md-2">
+          <img src="{{ post.image }}" alt="{{ post.title }}" class="img-fluid blog-thumb" />
+        </div>
+      {% endif %}
+      <div class="col">
+        <h2 style="font-size:1.3rem; margin-bottom:0.5rem;"><a href="{{ post.url }}">{{ post.title }}</a></h2>
+        <div class="blog-date mb-2">{{ post.date | date: "%B %d, %Y" }}</div>
+        <div class="blog-desc">{{ post.excerpt | strip_html | truncatewords: 30 }}</div>
+        <a href="{{ post.url }}" class="btn btn-sm btn-primary mt-2">Read more</a>
+      </div>
+    </div>
   {% endfor %}
-</ul> 
+</div> 
