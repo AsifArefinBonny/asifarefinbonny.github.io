@@ -55,7 +55,7 @@ a, a:focus, a:hover, a:visited {
 	text-align: center;
 	top: 0;
 	left: 0;
-	height: 44px;
+	height: 65px;
 	background: #33333380;
 	color: #fff;
 	z-index: 2;
@@ -73,7 +73,7 @@ a, a:focus, a:hover, a:visited {
 	display: inline-block;
 	margin: 0;
 	padding: 10px;
-	margin: 0 20px;
+	margin: 10px 20px;
 }
 
 .navigation ul li a {
@@ -522,7 +522,14 @@ label {
   .floating-blog-btn:hover {
 	background: #dfdfdf;
   }
-  
+
+  .nav-blog-btn {
+	background:#416eef;
+	color: white;
+	padding: 10px 20px;
+	border-radius: 30px;	
+  }
+
   .blog-list, .blog-post {
 	max-width: 60%;
 	margin: 0 auto;
@@ -639,5 +646,12 @@ label {
   }
   .blog-list {
     padding: 0 0.5rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .floating-blog-btn {
+    background: #416eef !important;
+    color: #fff !important;
   }
 }
