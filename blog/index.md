@@ -6,15 +6,6 @@ title: Blog
 <!-- Add favicon for blog page -->
 <link rel="icon" type="image/x-icon" href="/images/Bonny.png" />
 
-<!-- Blog View Toggle and Home Button (styled to match main navbar, placed at top) -->
-<div id="blog-navbar-controls" style="display:flex;align-items:center;justify-content:flex-end;padding:1em 0 0.5em 0;gap:1em;max-width:900px;margin:0 auto;">
-  <button id="blog-list-toggle" class="btn btn-primary" style="min-width:120px;">List View</button>
-  <button id="blog-detail-toggle" class="btn btn-secondary" style="min-width:120px;">Detail View</button>
-  <a href="/index.html" class="btn btn-outline-primary">&larr; Home</a>
-</div>
-
-<h1 style="text-align:center;">Blog</h1>
-
 <!-- Blog List View -->
 <div id="blog-list-view" class="blog-list" style="max-width:800px;margin:2em auto 3em auto;">
   {% for post in site.posts %}
@@ -31,14 +22,3 @@ title: Blog
     </div>
   {% endfor %}
 </div>
-
-<!-- Blog Footer -->
-<footer class="blog-footer" style="text-align:center;padding:2em 0 1em 0;border-top:1px solid #eee;margin-top:3em;">
-  <div style="font-weight:600;font-size:1.1em;">Asif Arefin Bonny</div>
-  <div style="margin:0.5em 0;">
-    <a href="mailto:asifarefinbonny@gmail.com" style="margin:0 0.5em;">asifarefinbonny@gmail.com</a>
-    <a href="https://github.com/AsifArefinBonny" target="_blank" style="margin:0 0.5em;">GitHub</a>
-  </div>
-</footer>
-
-<!-- Remove JS toggler for detail view, keep only List/Detail toggle if needed -->
