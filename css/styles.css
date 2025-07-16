@@ -9,6 +9,45 @@ body {
 	text-align: center;
 }
 
+/* Dark mode styles */
+body.dark-mode, html.dark-mode {
+  background-color: #181a1b !important;
+  color: #e0e0e0 !important;
+}
+body.dark-mode a, html.dark-mode a {
+  color: #8ab4f8 !important;
+}
+body.dark-mode .navbar, html.dark-mode .navbar {
+  background: #23272b !important;
+  color: #e0e0e0 !important;
+}
+body.dark-mode .modal-content {
+  background: #23272b !important;
+  color: #e0e0e0 !important;
+}
+body.dark-mode .form-control, body.dark-mode .form-control-custom {
+  background: #23272b !important;
+  color: #e0e0e0 !important;
+  border: 1px solid #444 !important;
+}
+body.dark-mode .btn-primary {
+  background: #416eef !important;
+  border-color: #416eef !important;
+  color: #fff !important;
+}
+body.dark-mode .floating-blog-btn {
+  background: #416eef !important;
+  color: #fff !important;
+}
+body.dark-mode .pagination-dot {
+  background: #444 !important;
+  border: 1px solid #888 !important;
+}
+body.dark-mode .pagination-dot.active {
+  background: #416eef !important;
+  border-color: #416eef !important;
+}
+
 /* Links */
 
 a, a:focus, a:hover, a:visited {
@@ -672,4 +711,50 @@ label {
   outline: 0 !important;
   box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25) !important;
   background: #fff !important;
+}
+
+/* Dark mode toggle button fixed at top left */
+#dark-mode-toggle {
+  position: fixed !important;
+  right: 8px !important;
+  bottom: 8px !important;
+  left: auto !important;
+  top: auto !important;
+  z-index: 1001 !important;
+  cursor: pointer;
+  font-size: 2rem;
+  background: none !important;
+  border-radius: 0 !important;
+  padding: 0;
+  box-shadow: none !important;
+  transition: color 0.2s;
+}
+#dark-mode-toggle:hover {
+  background: none !important;
+  color: #416eef;
+}
+body.dark-mode #dark-mode-toggle {
+  background: none !important;
+}
+body.dark-mode #dark-mode-toggle:hover {
+  background: none !important;
+  color: #8ab4f8;
+}
+
+/* Force dark mode background on all main containers and slides */
+body.dark-mode .slide-wrapper,
+body.dark-mode .item,
+body.dark-mode #slide-1,
+body.dark-mode #slide-2,
+body.dark-mode #slide-3,
+body.dark-mode #slide-4,
+body.dark-mode #slide-5,
+body.dark-mode .blog-post-item {
+  background: #23272b !important;
+  color: #e0e0e0 !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15) !important;
+}
+body.dark-mode .blog-desc,
+body.dark-mode .blog-date {
+  color: #b0b0b0 !important;
 }

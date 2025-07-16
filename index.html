@@ -423,6 +423,11 @@
       </div>
     </div>
 
+    <!-- Dark mode toggle, positioned at the bottom right corner -->
+    <div id="dark-mode-toggle" style="position:fixed; right:25px; bottom:25px; z-index:1001; cursor:pointer; font-size:2rem;">
+      <span id="dark-icon" class="fa fa-moon-o"></span>
+    </div>
+
     <!-- jQuery first, then Tether, then Bootstrap JS. -->
     <script
       src="https://code.jquery.com/jquery-3.2.1.min.js"
@@ -526,6 +531,40 @@
             alert('There was an error submitting the form. Please try again.');
           }
         });
+      });
+    });
+    </script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Dark mode toggle logic
+      var darkModeKey = 'darkMode';
+      var body = document.body;
+      var html = document.documentElement;
+      var toggle = document.getElementById('dark-mode-toggle');
+      var icon = document.getElementById('dark-icon');
+
+      function setDarkMode(on) {
+        if (on) {
+          body.classList.add('dark-mode');
+          html.classList.add('dark-mode');
+          icon.classList.remove('fa-moon-o');
+          icon.classList.add('fa-sun-o');
+        } else {
+          body.classList.remove('dark-mode');
+          html.classList.remove('dark-mode');
+          icon.classList.remove('fa-sun-o');
+          icon.classList.add('fa-moon-o');
+        }
+        localStorage.setItem(darkModeKey, on ? '1' : '0');
+      }
+
+      // Initial state
+      var dark = localStorage.getItem(darkModeKey) === '1';
+      setDarkMode(dark);
+
+      toggle.addEventListener('click', function() {
+        dark = !dark;
+        setDarkMode(dark);
       });
     });
     </script>
