@@ -298,6 +298,7 @@
                 <div class="col-md-7 text-left">
                   <form
                     class="contact-form"
+                    id="main-contact-form"
                     action="https://formspree.io/f/xrgnjqlk"
                     method="POST"
                   >
@@ -306,7 +307,9 @@
                       <input
                         type="text"
                         class="form-control-custom"
+                        name="name"
                         placeholder="Name"
+                        required
                       />
                     </div>
                     <div class="form-group">
@@ -316,6 +319,7 @@
                         name="email"
                         class="form-control-custom"
                         placeholder="Email address"
+                        required
                       />
                     </div>
                     <div class="form-group">
@@ -324,6 +328,8 @@
                         class="form-control-custom"
                         rows="3"
                         name="message"
+                        placeholder="Message"
+                        required
                       ></textarea>
                     </div>
                     <button
@@ -333,6 +339,7 @@
                       Send
                     </button>
                   </form>
+                  <div id="main-contact-success" style="display:none;" class="alert alert-success mt-3">Thank you! Your message has been sent.</div>
                 </div>
                 <div class="col-md text-right">
                   <h3>Email</h3>
@@ -464,7 +471,7 @@
         $('#cvContactModal').modal('show');
       });
 
-      // Handle form submission
+      // Handle form submission for CV modal
       $('#cv-contact-form').on('submit', function(e) {
         e.preventDefault();
         var form = $(this);
@@ -484,6 +491,30 @@
               // Trigger the download
               window.open('https://asifarefinbonny.github.io/Asif-Arefin-Bonny-Resume.pdf', '_blank');
             }, 2000);
+          },
+          error: function() {
+            alert('There was an error submitting the form. Please try again.');
+          }
+        });
+      });
+
+      // Handle main contact form submission with AJAX
+      $('#main-contact-form').on('submit', function(e) {
+        e.preventDefault();
+        var form = $(this);
+        $.ajax({
+          url: form.attr('action'),
+          method: form.attr('method'),
+          data: form.serialize(),
+          dataType: 'json',
+          success: function() {
+            form.hide();
+            $('#main-contact-success').show();
+            setTimeout(function() {
+              form[0].reset();
+              form.show();
+              $('#main-contact-success').hide();
+            }, 3000);
           },
           error: function() {
             alert('There was an error submitting the form. Please try again.');
