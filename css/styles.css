@@ -691,7 +691,7 @@ label {
 @media (max-width: 600px) {
   .blog-post-item {
     flex-direction: column !important;
-    align-items: flex-start !important;
+    align-items: center !important;
     text-align: left !important;
     padding: 1em 0.5em !important;
   }
@@ -701,9 +701,12 @@ label {
     margin-bottom: 0.7em !important;
     border-radius: 8px !important;
     display: block;
+    margin-left: auto;
+    margin-right: auto;
   }
   .blog-post-item > div {
     width: 100% !important;
+    text-align: left !important;
   }
 }
 
