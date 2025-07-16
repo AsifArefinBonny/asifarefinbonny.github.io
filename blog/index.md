@@ -3,12 +3,12 @@ layout: default
 title: Blog
 ---
 
-<!-- Blog Navbar -->
-<nav class="blog-navbar" style="display:flex;align-items:center;justify-content:space-between;padding:1em 0 1.5em 0;gap:1em;">
+<!-- Blog View Toggle and Home Button (styled to match main navbar, placed at top) -->
+<div id="blog-navbar-controls" style="display:flex;align-items:center;justify-content:flex-end;padding:1em 0 0.5em 0;gap:1em;max-width:900px;margin:0 auto;">
   <button id="blog-list-toggle" class="btn btn-primary" style="min-width:120px;">List View</button>
   <button id="blog-detail-toggle" class="btn btn-secondary" style="min-width:120px;">Detail View</button>
   <a href="/index.html" class="btn btn-outline-primary">&larr; Home</a>
-</nav>
+</div>
 
 <h1 style="text-align:center;">Blog</h1>
 
@@ -71,11 +71,12 @@ detailBtn.onclick = function() {
   if (!detailView.innerHTML) showListView();
   else showDetailView(detailView.innerHTML);
 };
-// Handle detail links
-Array.from(document.getElementsByClassName('blog-detail-link')).forEach(link => {
-  link.onclick = function(e) {
+// Use event delegation for blog post links
+listView.addEventListener('click', function(e) {
+  const link = e.target.closest('.blog-detail-link');
+  if (link) {
     e.preventDefault();
-    const url = this.getAttribute('data-url');
+    const url = link.getAttribute('data-url');
     fetch(url)
       .then(r => r.text())
       .then(html => {
@@ -95,7 +96,7 @@ Array.from(document.getElementsByClassName('blog-detail-link')).forEach(link => 
           };
         }
       });
-  };
+  }
 });
 // Default to list view
 showListView();
