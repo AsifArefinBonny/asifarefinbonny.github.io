@@ -689,6 +689,25 @@ label {
 }
 
 @media (max-width: 600px) {
+  .blog-post-item {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    text-align: left !important;
+    padding: 1em 0.5em !important;
+  }
+  .blog-post-item img.blog-thumb {
+    max-width: 100% !important;
+    width: 100% !important;
+    margin-bottom: 0.7em !important;
+    border-radius: 8px !important;
+    display: block;
+  }
+  .blog-post-item > div {
+    width: 100% !important;
+  }
+}
+
+@media (max-width: 600px) {
   .floating-blog-btn {
     background: #416eef !important;
     color: #fff !important;
