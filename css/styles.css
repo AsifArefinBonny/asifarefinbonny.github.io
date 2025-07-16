@@ -752,7 +752,7 @@ body.dark-mode #slide-5,
 body.dark-mode .blog-post-item {
   background: #23272b !important;
   color: #e0e0e0 !important;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.15) !important;
+  /* box-shadow: 0 2px 8px rgba(0,0,0,0.15) !important; */
 }
 body.dark-mode .blog-desc,
 body.dark-mode .blog-date {
