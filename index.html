@@ -465,6 +465,12 @@
     <!-- Add script to handle modal and download logic -->
     <script>
     $(document).ready(function() {
+      // Base64-encoded CV link (github.io)
+      var encodedCV = "aHR0cHM6Ly9hc2lmYXJlZmluYm9ubnkuZ2l0aHViLmlvL0FzaWYtQXJlZmluLUJvbm55LVJlc3VtZS5wZGY=";
+      function getCVLink() {
+        return atob(encodedCV);
+      }
+
       // Intercept click on both CV download icons
       $('#cv-download-btn, #cv-download-btn-bottom').on('click', function(e) {
         e.preventDefault();
@@ -488,8 +494,8 @@
               form[0].reset();
               form.show();
               $('#cv-download-success').hide();
-              // Trigger the download
-              window.open('https://asifarefinbonny.github.io/Asif-Arefin-Bonny-Resume.pdf', '_blank');
+              // Trigger the download using obfuscated link
+              window.open(getCVLink(), '_blank');
             }, 2000);
           },
           error: function() {
