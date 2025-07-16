@@ -3,6 +3,9 @@ layout: default
 title: Blog
 ---
 
+<!-- Add favicon for blog page -->
+<link rel="icon" type="image/x-icon" href="/images/Bonny.png" />
+
 <!-- Blog View Toggle and Home Button (styled to match main navbar, placed at top) -->
 <div id="blog-navbar-controls" style="display:flex;align-items:center;justify-content:flex-end;padding:1em 0 0.5em 0;gap:1em;max-width:900px;margin:0 auto;">
   <button id="blog-list-toggle" class="btn btn-primary" style="min-width:120px;">List View</button>
