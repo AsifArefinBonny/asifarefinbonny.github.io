@@ -56,7 +56,7 @@
                 >asifarefinbonny18@gmail.com</a
               >
               &nbsp;|&nbsp; +8801755837774 &nbsp;|&nbsp;
-              <a href="https://asifarefinbonny.github.io/Asif-Arefin-Bonny-Resume.pdf" class="fa fa-file-pdf-o fa-lg" target=”_blank”></a>
+              <a href="#" id="cv-download-btn" class="fa fa-file-pdf-o fa-lg" title="Download CV"></a>
             </p>
 
             <p class="lead text-justify">
@@ -372,12 +372,7 @@
                       ></a>
                     </li>
                     <li>
-                      <a
-                        href="https://asifarefinbonny.github.io/Asif-Arefin-Bonny-Resume.pdf"
-                        title="resume"
-                        class="fa fa-file-pdf-o"
-                        target=”_blank”
-                      ></a>
+                      <a href="#" id="cv-download-btn-bottom" title="resume" class="fa fa-file-pdf-o" target="_blank"></a>
                     </li>
                     <div class="clear"></div>
                   </ul>
@@ -392,10 +387,39 @@
     </div>
     <!--/ .site-wrapper-->
 
+    <!-- Modal for CV Download Contact Form -->
+    <div class="modal fade" id="cvContactModal" tabindex="-1" role="dialog" aria-labelledby="cvContactModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="cvContactModalLabel">Fill the form to download CV</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form id="cv-contact-form" action="https://formspree.io/f/xrgnjqlk" method="POST">
+              <div class="form-group">
+                <input type="text" class="form-control" id="cv-name" name="name" required placeholder="Your name">
+              </div>
+              <div class="form-group">
+                <input type="email" class="form-control" id="cv-email" name="email" required placeholder="Your email">
+              </div>
+              <div class="form-group">
+                <textarea class="form-control" id="cv-message" name="message" rows="3" placeholder="Your message"></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary">Submit & Download CV</button>
+            </form>
+            <div id="cv-download-success" style="display:none;" class="alert alert-success mt-3">Thank you! Your download will start shortly.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- jQuery first, then Tether, then Bootstrap JS. -->
     <script
-      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-      integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g="
+      src="https://code.jquery.com/jquery-3.2.1.min.js"
+      integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
       crossorigin="anonymous"
     ></script>
     <script
@@ -430,5 +454,43 @@
       });
     </script>
     <a href="/blog/" class="floating-blog-btn d-md-none d-lg-none">My Blog</a>
+
+    <!-- Add script to handle modal and download logic -->
+    <script>
+    $(document).ready(function() {
+      // Intercept click on both CV download icons
+      $('#cv-download-btn, #cv-download-btn-bottom').on('click', function(e) {
+        e.preventDefault();
+        $('#cvContactModal').modal('show');
+      });
+
+      // Handle form submission
+      $('#cv-contact-form').on('submit', function(e) {
+        e.preventDefault();
+        var form = $(this);
+        $.ajax({
+          url: form.attr('action'),
+          method: form.attr('method'),
+          data: form.serialize(),
+          dataType: 'json',
+          success: function() {
+            form.hide();
+            $('#cv-download-success').show();
+            setTimeout(function() {
+              $('#cvContactModal').modal('hide');
+              form[0].reset();
+              form.show();
+              $('#cv-download-success').hide();
+              // Trigger the download
+              window.open('https://asifarefinbonny.github.io/Asif-Arefin-Bonny-Resume.pdf', '_blank');
+            }, 2000);
+          },
+          error: function() {
+            alert('There was an error submitting the form. Please try again.');
+          }
+        });
+      });
+    });
+    </script>
   </body>
 </html>
