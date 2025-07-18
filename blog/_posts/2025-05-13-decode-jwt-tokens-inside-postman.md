@@ -1,256 +1,123 @@
 ---
 layout: post
-title: "Decode JWT Tokens Inside Postman: A QA Engineer's Essential Testing Tool"
+title: "Decoding JWT Tokens in Postman: A QA Engineer's Guide"
 date: 2025-05-13
-image: /images/jwt-postman.png
+image: /images/jwt.png
 ---
 
-As a QA engineer, I spend countless hours testing API endpoints, validating authentication flows, and ensuring that user permissions are working correctly across different scenarios. One of the most frequent tasks in my daily testing routine is inspecting JWT tokens to verify user details, roles, and permissions.
-
-If you're like me, you've probably found yourself constantly copying JWT tokens from Postman responses and pasting them into jwt.io to decode them. While this works, it's incredibly disruptive to our testing flow – especially when you're running through multiple test cases or validating different user roles.
+As a Software Quality Assurance (SQA) engineer, ensuring the integrity and accuracy of user data in API responses is a critical part of our testing process. One common task is verifying user details—such as customer information, roles, and permissions—embedded in JSON Web Tokens (JWTs). While websites like jwt.io are useful for decoding JWTs, copying tokens from Postman and navigating to an external site is cumbersome and disrupts our workflow. Fortunately, Postman provides a powerful way to decode JWTs directly within its environment, streamlining the process and keeping everything in one place.
 
 <!--more-->
 
-![Decode JWT in Postman](/images/jwt-postman.png)
+In this blog post, I’ll share a simple yet effective script to decode JWT tokens inside Postman and display the header and payload in a clean, JSON-formatted view under the Visualization tab. This approach saves time, enhances test efficiency, and ensures we can quickly validate user details during API testing.
 
-## The QA Challenge
+## Why Decode JWTs in Postman?
 
-During API testing, we frequently need to:
-- **Verify User Identity**: Confirm that the correct user is authenticated
-- **Validate Roles and Permissions**: Ensure proper authorization levels are assigned
-- **Check Token Expiry**: Verify token lifetime and refresh logic
-- **Debug Authentication Issues**: Troubleshoot failed login attempts or permission errors
-- **Test Edge Cases**: Validate behavior with expired or malformed tokens
-- **Document Test Results**: Capture token contents for test reports
+![JWT Hero Image](/images/jwt.png)
 
-The traditional workflow of copy → switch to jwt.io → paste → switch back to Postman becomes a significant time drain when you're executing comprehensive test suites.
+JWTs are widely used for authentication and authorization in APIs. They consist of three parts: Header, Payload, and Signature, encoded in Base64 and separated by dots (.). As QA engineers, we often need to inspect the payload to verify user-specific claims (e.g., user_id, roles, or permissions) or the header to check metadata (e.g., algorithm used). Doing this manually via external tools like jwt.io requires extra steps, which can slow down our testing cycles, especially when dealing with multiple tokens or environments.
 
-## The Solution: In-Postman JWT Decoding
+By decoding JWTs directly in Postman, we can:
 
-After experimenting with various approaches, I've developed a script that decodes JWT tokens directly within Postman's interface. This eliminates context switching and provides immediate visibility into token contents during test execution.
+- **Save time:** No need to switch between tools.
+- **Improve accuracy:** View token details in context with the API response.
+- **Enhance debugging:** Quickly validate token contents during test execution.
 
-### Complete Setup Guide
+## The Solution: A Postman Script for JWT Decoding
 
-**Step 1: Prepare Your Authentication Request**
+Below is a step-by-step guide to decode a JWT token in Postman using a pre-built script. This script extracts the token from the API response, decodes the header and payload, and displays them in a formatted, user-friendly view.
 
-Ensure your authentication endpoint returns a response with an `accessToken` field. The response should look something like this:
+### Step 1: Add the Script to Postman
 
-```json
-{
-  "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
-  "refreshToken": "...",
-  "expiresIn": 3600
-}
-```
-
-**Step 2: Add the JWT Decoding Script**
-
-Navigate to your authentication request in Postman and click on the **Tests** tab. Add the following script:
+To decode the JWT, place the following script in the Tests tab (also known as the post-response script) of your Postman request. This script assumes your API response contains an accessToken field with the JWT.
 
 ```javascript
-// Only proceed if we have a successful response
-if (pm.response.code === 200) {
-    try {
-        var jsonData = pm.response.json();
-        
-        // Store the token in environment variable for subsequent requests
-        if (jsonData.accessToken) {
-            pm.environment.set("jwt", jsonData.accessToken);
-            
-            // Function to parse JWT parts (header and payload)
-            function parseJwt(token, part) {
-                var base64Url = token.split('.')[part];
-                // Add padding if needed for proper Base64 decoding
-                while (base64Url.length % 4) {
-                    base64Url += '=';
-                }
-                var words = CryptoJS.enc.Base64.parse(base64Url);
-                var jsonPayload = CryptoJS.enc.Utf8.stringify(words);
-                return JSON.stringify(JSON.parse(jsonPayload), null, 2);
-            }
-            
-            var jwtInfo = {};
-            jwtInfo.header = parseJwt(jsonData.accessToken, 0);
-            jwtInfo.payload = parseJwt(jsonData.accessToken, 1);
-            
-            // Check if token is expired
-            var payload = JSON.parse(jwtInfo.payload);
-            var currentTime = Math.floor(Date.now() / 1000);
-            var isExpired = payload.exp && payload.exp < currentTime;
-            
-            var template = `
-            <style>
-                body {
-                    font-family: 'Courier New', monospace;
-                    background: #1e1e1e;
-                    color: #dcdcdc;
-                    padding: 15px;
-                    font-size: 13px;
-                    line-height: 1.4;
-                }
-                .container {
-                    max-width: 100%;
-                    margin: 0 auto;
-                }
-                .section {
-                    margin-bottom: 20px;
-                    background: #2d2d30;
-                    border-radius: 8px;
-                    padding: 15px;
-                    border: 1px solid #3e3e42;
-                }
-                .section h3 {
-                    color: #569cd6;
-                    margin: 0 0 10px 0;
-                    font-size: 16px;
-                    border-bottom: 1px solid #404040;
-                    padding-bottom: 5px;
-                }
-                pre {
-                    background: #1e1e1e;
-                    padding: 12px;
-                    border-radius: 6px;
-                    white-space: pre-wrap;
-                    word-wrap: break-word;
-                    overflow-x: auto;
-                    border: 1px solid #404040;
-                    margin: 0;
-                }
-                .status {
-                    padding: 8px 12px;
-                    border-radius: 4px;
-                    font-weight: bold;
-                    margin-bottom: 10px;
-                }
-                .expired {
-                    background: #4a1a1a;
-                    color: #ff6b6b;
-                    border: 1px solid #8b0000;
-                }
-                .valid {
-                    background: #1a4a1a;
-                    color: #51cf66;
-                    border: 1px solid #2b8a3e;
-                }
-                .info {
-                    background: #1a3a4a;
-                    color: #74c0fc;
-                    border: 1px solid #1864ab;
-                }
-            </style>
-            <div class="container">
-                <div class="section">
-                    <h3>🔐 Token Status</h3>
-                    <div class="status ${isExpired ? 'expired' : 'valid'}">
-                        ${isExpired ? '❌ Token Expired' : '✅ Token Valid'}
-                    </div>
-                    ${payload.exp ? `<div class="info">Expires: ${new Date(payload.exp * 1000).toLocaleString()}</div>` : ''}
-                </div>
-                
-                <div class="section">
-                    <h3>📋 JWT Header</h3>
-                    <pre>{{response.header}}</pre>
-                </div>
-                
-                <div class="section">
-                    <h3>👤 JWT Payload</h3>
-                    <pre>{{response.payload}}</pre>
-                </div>
-            </div>
-            `;
-            
-            pm.visualizer.set(template, { response: jwtInfo });
-            
-            // Add test assertions for QA validation
-            pm.test("JWT token is present", function() {
-                pm.expect(jsonData.accessToken).to.be.a('string');
-                pm.expect(jsonData.accessToken.split('.')).to.have.lengthOf(3);
-            });
-            
-            pm.test("JWT token is not expired", function() {
-                pm.expect(isExpired).to.be.false;
-            });
-            
-        } else {
-            console.log("No accessToken found in response");
-        }
-        
-    } catch (error) {
-        console.error("Error parsing JWT:", error);
-    }
+var jsonData = pm.response.json();
+pm.environment.set("jwt", jsonData.accessToken);
+
+function parseJwt(token, part) {
+    var base64Url = token.split('.')[part];
+    var words = CryptoJS.enc.Base64.parse(base64Url);
+    var jsonPayload = CryptoJS.enc.Utf8.stringify(words);
+    return JSON.stringify(JSON.parse(jsonPayload), null, 2); // Pretty-print JSON
+}
+var jwtInfo = {};
+jwtInfo.header = parseJwt(jsonData.accessToken, 0);
+jwtInfo.payload = parseJwt(jsonData.accessToken, 1);
+var template = `
+<style>
+body { font-family: monospace; background: #1e1e1e; color: #dcdcdc; padding: 10px; font-size: 12px; }
+pre { background: #252526; padding: 10px; border-radius: 5px; white-space: pre-wrap; word-wrap: break-word; overflow-x: auto; }
+</style>
+<h3>JWT Header</h3>
+<pre>{{response.header}}</pre>
+<h3>JWT Payload</h3>
+<pre>{{response.payload}}</pre>
+`;
+pm.visualizer.set(template, { response: jwtInfo });
+```
+
+## How the Script Works
+
+Let’s break down the script from a QA perspective to understand its functionality:
+
+- **Extract the Token:** `pm.response.json()` retrieves the API response as a JSON object, and `pm.environment.set("jwt", jsonData.accessToken)` stores the accessToken in an environment variable for potential reuse.
+- **Parse the JWT:** The `parseJwt` function takes the token and a part index (0 for header, 1 for payload). It splits the token at the dots, decodes the specified part using `CryptoJS.enc.Base64.parse`, converts it to a UTF-8 string, and formats it as pretty-printed JSON.
+- **Store Decoded Data:** The decoded header and payload are stored in the `jwtInfo` object.
+- **Render Visualization:** The template defines an HTML structure with CSS styling for a clean, dark-themed display. The `pm.visualizer.set` method renders the decoded header and payload in Postman’s Visualization tab.
+
+### Step 2: Test the Request
+
+- Send your API request (e.g., a login request that returns an accessToken).
+- After the response is received, navigate to the Visualization tab in Postman.
+- You’ll see the JWT header and payload displayed as formatted JSON, similar to this:
+
+**Example Output:**
+
+JWT Header
+```json
+{
+  "alg": "HS256",
+  "typ": "JWT"
 }
 ```
 
-**Step 3: Configure Environment Variables**
+JWT Payload
+```json
+{
+  "sub": "1234567890",
+  "name": "John Doe",
+  "roles": ["admin", "user"],
+  "permissions": ["read", "write"],
+  "iat": 1516239022
+}
+```
 
-1. Create or select a Postman environment
-2. The script will automatically create a `jwt` variable containing your access token
-3. You can reference this token in subsequent requests using `{{jwt}}`
+### Step 3: Validate the Output
 
-**Step 4: Execute and Analyze**
+As QA engineers, validation is key. Check the following:
 
-1. Send your authentication request
-2. Check the **Test Results** tab for validation status
-3. Click the **Visualize** tab to see the decoded JWT content
-4. Review the token status, expiration, and payload details
+- **Header:** Confirm the algorithm (`alg`) and token type (`typ`) match the expected values for your application.
+- **Payload:** Verify user-specific claims (e.g., `sub`, `roles`, `permissions`) align with the test case requirements.
+- **Errors:** If the token is malformed or the API response doesn’t include an `accessToken`, the script may throw an error. Add error handling if needed for robustness.
 
-## Script Analysis and Corrections
+## Why This Matters for QA
 
-I've reviewed and enhanced the original script with several improvements:
+This approach is a game-changer for SQA engineers because it:
 
-### What I Fixed:
-1. **Base64 Padding**: Added proper padding handling for Base64URL decoding
-2. **Error Handling**: Wrapped the code in try-catch blocks
-3. **Response Validation**: Added checks for successful responses (200 status)
-4. **Token Validation**: Added expiration checking
-5. **Test Assertions**: Included automated test validations
+- **Streamlines Testing:** No need to leave Postman to decode tokens, reducing context-switching.
+- **Improves Traceability:** The decoded token is tied directly to the API response, making it easier to document and report issues.
+- **Supports Automation:** You can integrate this script into Postman collections for automated API tests, ensuring user details are validated consistently.
 
-### What I Enhanced:
-1. **Visual Design**: Improved the CSS for better readability
-2. **Status Indicators**: Added token expiration status with color coding
-3. **QA Validations**: Added automated test assertions
-4. **User Experience**: Better error messages and console logging
+## Tips for QA Engineers
 
-## QA Testing Benefits
-
-This approach provides several advantages for QA engineers:
-
-### **Immediate Validation**
-- Instantly verify user authentication without external tools
-- Check token expiration status at a glance
-- Validate token structure and required claims
-
-### **Test Automation Integration**
-- Automated assertions ensure token validity
-- Failed tests are immediately visible in the Test Results tab
-- Easy integration into collection runners and CI/CD pipelines
-
-### **Documentation and Reporting**
-- Visual token content can be screenshot for test reports
-- Clear indication of token status for test case documentation
-- Structured display makes it easy to verify specific claims
-
-### **Debugging Support**
-- Immediate access to token contents during test execution
-- No need to switch contexts when troubleshooting issues
-- Console logs provide additional debugging information
-
-## Advanced QA Usage Tips
-
-1. **Collection-Level Implementation**: Add this script to your collection's Tests tab to apply it to all authentication requests
-
-2. **Role-Based Testing**: Extend the script to highlight specific roles or permissions for role-based access control testing
-
-3. **Token Refresh Testing**: Use the expiration status to test token refresh workflows
-
-4. **Negative Testing**: Modify the script to test with malformed or expired tokens
-
-5. **Performance Testing**: Monitor token validation performance during load testing
+- **Error Handling:** Enhance the script to handle cases where `accessToken` is missing or invalid. For example, add a try-catch block around the JSON parsing.
+- **Environment Variables:** Store the decoded payload in environment variables if you need to use specific claims (e.g., `user_id`) in subsequent requests.
+- **Test Coverage:** Use this script to validate token contents across different user roles or permissions as part of your test scenarios.
+- **Security:** Ensure sensitive token data is handled securely and not exposed in shared Postman collections.
 
 ## Conclusion
 
-As QA engineers, our time is best spent on actual testing rather than manual token inspection. This enhanced JWT decoding script eliminates the friction of token analysis, provides immediate validation feedback, and integrates seamlessly into our testing workflows.
+Decoding JWTs directly in Postman is a simple yet powerful technique that aligns perfectly with a QA engineer’s goal of efficient, accurate testing. By embedding this script in your Postman requests, you can quickly inspect token details without relying on external tools, making your API testing workflow smoother and more reliable. Try it out in your next test cycle and see how it simplifies validating user data!
 
-The script is now production-ready with proper error handling, validation checks, and enhanced visual presentation. It's become an indispensable part of my API testing toolkit, and I'm confident it will enhance your testing efficiency as well.
-
-Give it a try in your next API testing session – you'll wonder how you ever tested authenticated endpoints without it! 
+Happy testing! 
