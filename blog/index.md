@@ -72,8 +72,3 @@ title: My Blogs
     </div>
   {% endfor %}
 </div>
-
-<!-- Minimal blog footer -->
-<footer style="text-align:left;padding:2em 0 1em 0;border-top:1px solid #eee;margin-top:3em;font-weight:600;font-size:1.1em;">
-  BoNnY - Technologically Yours
-</footer>
