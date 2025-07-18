@@ -1,15 +1,19 @@
 ---
 layout: post
-title: "My Journey Testing API Rate Limiting (And Why I Now Smile at 429 Errors)"
+title: "My Journey Testing API Rate Limiting"
+subtitle: "(And Why I Now Smile at 429 Errors)"
 date: 2025-07-03
 image: /images/ratelimit.png
 ---
-![Rate Limiting Hero Image](/images/ratelimit.png)
+
 When I was assigned to test our application’s new rate limiting feature, I’ll admit, my first reaction was, “Rate limiting? That’s just a ‘Too Many Requests’ error, right?” But a quick dive into research revealed a fascinating world of control mechanisms designed to protect APIs from overuse.
 Here’s my note, packed with lessons and tips for anyone testing rate limiting on their next project.
 
+![Rate Limiting Hero Image](/images/ratelimit.png)
+
 <!--more-->
 
+## Understanding the concept
 My journey began with a simple Google search: "What is API rate limiting?" 
 What I found was fascinating! Turns out, there are several flavors of rate limiting: 
 - Fixed Window: Like a bouncer at a club - "You can enter 10 times per hour, period." 
