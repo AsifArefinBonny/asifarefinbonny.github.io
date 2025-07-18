@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Decoding JWT Tokens in Postman: A QA Engineer's Guide"
+title: "Decoding JWT Tokens in Postman"
 date: 2025-05-13
 image: /images/jwt.png
 ---
