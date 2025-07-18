@@ -1,8 +1,8 @@
-title: 
-email: 
+title: BoNnY - Technologically Yours
+email: asifarefinbonny18@gmail.com
 description: >- # this means to ignore newlines until "."
   BoNnY - Technologically Yours
-author: 
+author: Asif Arefin Bonny
 # baseurl: "" # the subpath of your site, e.g. /blog
 # url: "" # the base hostname & protocol for your site
 theme: minima
@@ -17,7 +17,7 @@ defaults:
       type: "posts"
     values:
       layout: "post"
-      author: ""
+      author: "Asif Arefin Bonny"
 
 # Build settings
 markdown: kramdown 
