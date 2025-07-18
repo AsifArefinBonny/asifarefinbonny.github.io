@@ -1,5 +1,5 @@
-title: Asif Arefin Bonny
-email: asifarefinbonny18@gmail.com
+title: 
+email: 
 description: >- # this means to ignore newlines until "."
   BoNnY - Technologically Yours
 author: 
@@ -17,7 +17,7 @@ defaults:
       type: "posts"
     values:
       layout: "post"
-      author: "Asif Arefin Bonny"
+      author: ""
 
 # Build settings
 markdown: kramdown 
