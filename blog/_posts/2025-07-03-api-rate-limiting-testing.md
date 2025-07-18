@@ -23,6 +23,8 @@ What I found was fascinating! Turns out, there are several flavors of rate limit
 
 The more I read, the more I realized that rate limiting is literally EVERYWHERE! Twitter limits how many tweets you can post, GitHub limits API calls, even your favorite food delivery app probably limits how many orders you can place per minute (though honestly, who tests that limit? 😅 ).
 
+
+## Sliding Window??
 The implementation used a sliding window approach, and let me tell you, wrapping my head around this concept was like trying to understand time travel in a sci-fi movie. 
 The breakthrough came when I started thinking about it like a subway train:
 - The train has 4 seats (our permit limit) 
