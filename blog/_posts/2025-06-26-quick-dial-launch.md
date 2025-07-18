@@ -7,14 +7,14 @@ image: /images/quickdial1.png
 
 I created **𝗤𝘂𝗶𝗰𝗸 𝗗𝗶𝗮𝗹** ([🔗 Visit App](https://asifarefinbonny.github.io/QuickDial/)) — a QR Code Generator for quick contact dialing, which might just make us a bit smarter if we use it right!
 
+
+As a QA Engineer passionate about automation and real-world problem solving, I recently dove into GitHub Actions and Playwright automation. But instead of experimenting on someone else’s project, I decided to build my own mini-app from scratch and test it end-to-end!
+
 ---
 
 ### 🔍 The Problem
 
-In shopping malls and office areas in Bangladesh, cars often get blocked due to the chaotic parking system.  
-The common workaround? Leave a handwritten phone number on the windshield so the blocked car can call you.
-
-But… the handwriting is often bad, digits unclear, and calling becomes frustrating — especially in hot, smelly parking lots.
+In shopping malls and office areas in Bangladesh, cars often get blocked due to the chaotic parking system. The common practice is leaving a phone number handwritten on a windshield so the car behind can call the owner/driver. But... the handwriting is often bad, digits unclear, and calling becomes frustrating in hot, smelly parking lots.
 
 ---
 
@@ -22,7 +22,7 @@ But… the handwriting is often bad, digits unclear, and calling becomes frustra
 
 ### 💡 The Inspiration
 
-A big shoutout to my colleague, **Tariqur Rahman**, who pointed out this everyday pain point and suggested a tech-driven solution.
+A big shoutout to my colleague, **Tariqur Rahman** ([🔗 Visit App](https://www.linkedin.com/in/md-tariqur-rahman/)), who pointed out this everyday pain point and suggested a tech-driven solution.
 
 ---
 
@@ -41,10 +41,10 @@ With **Quick Dial**, you can:
 
 ### 🔍 From a QA Engineer's Perspective
 
-As a QA Engineer passionate about automation and real-world problem-solving, I wanted to treat this like a serious project:
+As a QA Engineer passionate about automation and real-world problem-solving:
 
-- 🧠 "Vibe coding" approach — for fun, flow, and creativity.
-- 🤖 Leveraged AI to brainstorm, debug, and even write parts of the code and tests.
+- 🧠 I used **Vibe coding** approach — for fun, flow, and creativity.
+- 🤖 Leveraged **AI** to brainstorm, debug, and even write parts of the code and tests.
 - ✅ Implemented **Playwright** for robust end-to-end testing across browsers and devices.
 - 🔁 Setup **GitHub Actions** to trigger tests and auto-deploy builds on push.
 - 👁 Focused on **accessibility, usability**, and **real-world edge cases**.
@@ -56,7 +56,7 @@ As a QA Engineer passionate about automation and real-world problem-solving, I w
 
 ### 🛠 Tech Stack
 
-- Vanilla JS, HTML, CSS — lightweight, fast
+- **Vanilla JS, HTML, CSS** — lightweight, fast
 - **Playwright** — for automation and regression testing
 - **GitHub Actions** — for CI/CD
 - **AI** — for test generation, creative problem solving, and flow!
@@ -68,7 +68,3 @@ As a QA Engineer passionate about automation and real-world problem-solving, I w
 👉 [Launch Quick Dial Now](https://asifarefinbonny.github.io/QuickDial/)  
 Generate your QR, scan it, and let me know your thoughts!
 
----
-
-Thanks for reading,  
-~ Asif Arefin Bonny 🚀
