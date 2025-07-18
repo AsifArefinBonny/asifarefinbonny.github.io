@@ -10,21 +10,22 @@ I created **𝗤𝘂𝗶𝗰𝗸 𝗗𝗶𝗮𝗹** ([🔗 Visit App](https://as
 
 As a QA Engineer passionate about automation and real-world problem solving, I recently dove into GitHub Actions and Playwright automation. But instead of experimenting on someone else’s project, I decided to build my own mini-app from scratch and test it end-to-end!
 
----
+
 
 ### 🔍 The Problem
 
 In shopping malls and office areas in Bangladesh, cars often get blocked due to the chaotic parking system. The common practice is leaving a phone number handwritten on a windshield so the car behind can call the owner/driver. But... the handwriting is often bad, digits unclear, and calling becomes frustrating in hot, smelly parking lots.
 
----
+
 
 ![QuickDial Screenshot 1](/images/quickdial2.png)
+
 
 ### 💡 The Inspiration
 
 A big shoutout to my colleague, **Tariqur Rahman** ([🔗 Visit App](https://www.linkedin.com/in/md-tariqur-rahman/)), who pointed out this everyday pain point and suggested a tech-driven solution.
 
----
+
 
 ### ✅ The Solution: **Quick Dial**
 
@@ -33,11 +34,11 @@ With **Quick Dial**, you can:
 - Download the QR as a PDF or share it digitally.
 - Print and display it on your car's windshield for hassle-free contact.
 
----
+
 
 ![QuickDial Screenshot 2](/images/quickdial1.png)
 
----
+
 
 ### 🔍 From a QA Engineer's Perspective
 
@@ -52,7 +53,7 @@ As a QA Engineer passionate about automation and real-world problem-solving:
   [🔗 GitHub Repo](https://github.com/AsifArefinBonny/QuickDial)  
   [🔗 Contribute Issues](https://github.com/AsifArefinBonny/QuickDial/issues)
 
----
+
 
 ### 🛠 Tech Stack
 
@@ -61,7 +62,7 @@ As a QA Engineer passionate about automation and real-world problem-solving:
 - **GitHub Actions** — for CI/CD
 - **AI** — for test generation, creative problem solving, and flow!
 
----
+
 
 ### 🙌 Try It Out
 
