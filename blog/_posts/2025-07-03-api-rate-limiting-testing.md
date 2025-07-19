@@ -85,23 +85,55 @@ The collection included:
 - Edge case testing: "What about invalid tokens?" 
 - Recovery testing: "Can I use the API again later?" 
 
-I wrote JavaScript that would: Automatically validate response codes, check for proper headers (like Retry-After), generate summary reports, and handle timing-sensitive scenarios. Here's my favorite test script snippet:
+I wrote a Script that would: Automatically validate response codes, check for proper headers (like Retry-After), help generateing summary reports, and handle timing-sensitive scenarios. Here's my favorite test script snippet:
 
 ```javascript
+// Acceptable success codes
+const successCodes = [200, 201, 202, 204];
+
+// Helper: Check if a header exists and not empty
+function headerExists(name) {
+    const value = pm.response.headers.get(name);
+    return value !== undefined && value !== null && value !== '';
+}
+
+// Main test logic
 if (pm.response.code === 429) {
-    pm.test('🛑 Rate limit triggered correctly', function () {
+    pm.test('🛑 Rate limit triggered correctly (429)', function () {
         pm.response.to.have.status(429);
-        pm.expect(pm.response.headers.get('Retry-After')).to.exist;
     });
-    console.log('🎉 Rate limiting is working!');
+
+    pm.test('Retry-After header is present and valid', function () {
+        pm.expect(headerExists('Retry-After')).to.be.true;
+        const retryAfter = pm.response.headers.get('Retry-After');
+        pm.expect(Number(retryAfter)).to.be.a('number').and.to.be.above(0);
+    });
+
+    pm.test('Error message is present in response body', function () {
+        let body = {};
+        try { body = pm.response.json(); } catch (e) {}
+        pm.expect(body).to.have.any.keys('error', 'message');
+        pm.expect(body.message || body.error).to.match(/rate limit|too many requests/i);
+    });
+
+    console.log('🎉 Rate limiting is working as expected!');
+} else if (successCodes.includes(pm.response.code)) {
+    pm.test('✅ Request accepted (success code)', function () {
+        pm.expect(successCodes).to.include(pm.response.code);
+    });
+    // Optionally, check for absence of rate limit headers
+    pm.test('No Retry-After header on success', function () {
+        pm.expect(headerExists('Retry-After')).to.be.false;
+    });
 } else {
-    pm.test('✅ Request accepted', function () {
-        pm.expect([200, 201, 202, 404]).to.include(pm.response.code);
+    pm.test('❗ Unexpected status code', function () {
+        pm.expect.fail(`Unexpected status code: ${pm.response.code}`);
     });
+    console.warn('Unexpected response:', pm.response.code, pm.response.text());
 }
 ```
 
-To simulate real-world conditions, I enhanced my Postman collection to mimic 50 clients making requests.
+To simulate real-world conditions, I also enhanced my Postman collection to mimic 50 clients making requests.
 
 ## Final Thoughts
 If you're about to embark on your own rate limiting testing journey, remember:
@@ -110,4 +142,6 @@ If you're about to embark on your own rate limiting testing journey, remember:
 - The key is understanding the "why" before jumping into the "how"
 - And yes, you will become oddly excited about HTTP 429 errors
 
-Now, whenever I see a "Too Many Requests" error in the wild, I smile a little. Because I know there's probably a tester somewhere who spent way too much time making sure that error message shows up at exactly the right moment. Happy testing! 🚀
+Now, whenever I see a "Too Many Requests" error in the wild, I smile a little. Because I know there's probably a tester somewhere who spent way too much time making sure that error message shows up at exactly the right moment.
+
+Happy testing! 🚀
