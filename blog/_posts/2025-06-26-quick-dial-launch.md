@@ -5,7 +5,7 @@ date: 2025-06-26
 image: /images/quickdial1.png
 ---
 
-I created **𝗤𝘂𝗶𝗰𝗸 𝗗𝗶𝗮𝗹** ([🔗 Visit App](https://asifarefinbonny.github.io/QuickDial/)) — a QR Code Generator for quick contact dialing, which might just make us a bit smarter if we use it right!
+I created **𝗤𝘂𝗶𝗰𝗸 𝗗𝗶𝗮𝗹** ([Visit App](https://asifarefinbonny.github.io/QuickDial/)) — a QR Code Generator for quick contact dialing, which might just make us a bit smarter if we use it right!
 
 
 As a QA Engineer passionate about automation and real-world problem solving, I recently dove into GitHub Actions and Playwright automation. But instead of experimenting on someone else’s project, I decided to build my own mini-app from scratch and test it end-to-end!
@@ -23,7 +23,7 @@ In shopping malls and office areas in Bangladesh, cars often get blocked due to 
 
 ### 💡 The Inspiration
 
-A big shoutout to my colleague, **Tariqur Rahman** ([🔗 Visit App](https://www.linkedin.com/in/md-tariqur-rahman/)), who pointed out this everyday pain point and suggested a tech-driven solution.
+A big shoutout to my colleague, ([Tariqur Rahman](https://www.linkedin.com/in/md-tariqur-rahman/)), who pointed out this everyday pain point and suggested a tech-driven solution.
 
 
 
